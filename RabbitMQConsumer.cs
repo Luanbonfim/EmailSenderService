@@ -70,30 +70,30 @@ namespace ProductEmailService
 
         private void SendEmail(string to, string subject, string body)
         {
-            //try
-            //{
-            //    using (var mailMessage = new MailMessage())
-            //    using (var smtpClient = new SmtpClient(_emailSettings.SmtpHost))
-            //    {
-            //        mailMessage.From = new MailAddress(_emailSettings.FromEmail);
-            //        mailMessage.To.Add(to);
-            //        mailMessage.Subject = subject;
-            //        mailMessage.Body = body;
+            try
+            {
+                using (var mailMessage = new MailMessage())
+                using (var smtpClient = new SmtpClient(_emailSettings.SmtpHost))
+                {
+                    mailMessage.From = new MailAddress(_emailSettings.FromEmail);
+                    mailMessage.To.Add(to);
+                    mailMessage.Subject = subject;
+                    mailMessage.Body = body;
 
-            //        smtpClient.Port = _emailSettings.SmtpPort;
-            //        smtpClient.Credentials = new System.Net.NetworkCredential(
-            //            _emailSettings.UserName,
-            //            _emailSettings.Password);
-            //        smtpClient.EnableSsl = true;
+                    smtpClient.Port = _emailSettings.SmtpPort;
+                    smtpClient.Credentials = new System.Net.NetworkCredential(
+                        _emailSettings.UserName,
+                        _emailSettings.Password);
+                    smtpClient.EnableSsl = true;
 
-            //        smtpClient.Send(mailMessage);
-            //        _logger.LogInformation("Email sent successfully to {0}", to);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.LogError("Failed to send email: {0}", ex.Message);
-            //}
+                    smtpClient.Send(mailMessage);
+                    _logger.LogInformation("Email sent successfully to {0}", to);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to send email: {0}", ex.Message);
+            }
         }
     }
 }
