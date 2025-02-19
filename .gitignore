@@ -1,0 +1,85 @@
+# Ignore .NET build and runtime artifacts
+bin/
+obj/
+
+# Ignore user-specific files
+.vs/
+.vscode/
+*.user
+*.suo
+*.userprefs
+
+# Ignore local development files
+*.swp
+*.swo
+
+# Ignore NuGet packages and restore files
+.nuget/
+packages/
+*.nupkg
+NuGet.exe
+nuget.config
+
+# Ignore IDE-specific files
+.idea/
+*.iml
+
+# Ignore logs and diagnostics
+logs/
+*.log
+*.tlog
+*.pidb
+*.ilk
+*.pdb
+*.db
+
+# Ignore output directories
+out/
+publish/
+
+# Ignore local development settings
+appsettings.Development.json
+
+# Ignore Rider-specific files
+.idea/
+*.sln.iml
+
+# Ignore macOS-specific files
+.DS_Store
+
+# Ignore Visual Studio cache directory
+.vs/
+
+# Ignore ReSharper files
+_ReSharper.*
+*.ReSharper
+
+# Ignore Rider cache directory
+.idea/
+
+# Ignore Azure Functions local settings
+local.settings.json
+
+# Ignore test results
+TestResults/
+*.trx
+
+# Ignore coverage reports
+coverage/
+*.coverage
+*.coveragexml
+
+# Ignore Cake build artifacts
+tools/
+artifacts/
+
+# Ignore JetBrains Rider cache
+.idea/
+*.sln.iml
+
+# Ignore Visual Studio Code workspace settings
+*.code-workspace
+
+# Ignore local development environment files
+.env
+.env.local
