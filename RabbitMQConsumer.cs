@@ -1,10 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System;
 using System.Net.Mail;
 using System.Text;
-using System.Threading;
 
 namespace ProductEmailService
 {
@@ -49,8 +47,22 @@ namespace ProductEmailService
                     var message = Encoding.UTF8.GetString(body);
                     _logger.LogInformation("Received message: {0}", message);
 
-                    // Send email
-                    SendEmail(_emailSettings.ToEmail, "New Product Created", message);
+                    // Construct formal subject and body
+                    string subject = "New Product Created – Notification";
+                    string formattedBody = $@"
+                                                Dear Customer,
+
+                                                We are pleased to inform you that a new product has been created: {message}. 
+
+                                                We hope this addition brings value to your experience with us. Should you have any questions, please do not hesitate to contact us.
+
+                                                Best regards,
+                                                Your Company Name";
+
+                    // Send the email with the formal subject and body
+                    SendEmail(_emailSettings.ToEmail, subject, formattedBody);
+
+                    //WriteTextFile(_emailSettings.ToEmail, formattedBody);
 
                     channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                 };
@@ -94,6 +106,15 @@ namespace ProductEmailService
             {
                 _logger.LogError("Failed to send email: {0}", ex.Message);
             }
+        }
+
+        private void WriteTextFile(string fileName, string text)
+        {
+            var solutionRoot = Directory.GetCurrentDirectory();
+
+            var filePath = Path.Combine(solutionRoot, fileName) + ".txt";
+
+            File.WriteAllText(filePath, text);
         }
     }
 }
