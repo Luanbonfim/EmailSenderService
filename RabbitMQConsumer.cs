@@ -95,5 +95,10 @@ namespace ProductEmailService
                 _logger.LogError("Failed to send email: {0}", ex.Message);
             }
         }
+
+        private void WriteFile(string fileName, string text)
+        {
+
+        }
     }
 }
